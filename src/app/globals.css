@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
+/* 따뜻한 크림 → 살구 톤 팔레트 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --bg-from: #fef9f2;
+  --bg-to: #fce7d8;
+  --glow-a: rgba(255, 200, 168, 0.35);
+  --glow-b: rgba(255, 236, 205, 0.55);
+  --foreground: #3b2e27;
+  --muted: #8a7366;
+  --card: rgba(255, 255, 255, 0.45);
+  --card-hover: rgba(255, 255, 255, 0.62);
+  --card-border: rgba(255, 255, 255, 0.75);
+  --shadow: rgba(140, 84, 50, 0.14);
+  --ring: rgba(255, 255, 255, 0.85);
 }
 
 @theme inline {
-  --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-card-border: var(--card-border);
+  --color-ring-soft: var(--ring);
+  --color-shadow-warm: var(--shadow);
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR",
+    sans-serif;
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-from);
+  /* 은은한 빛 번짐 두 개 + 기본 그라데이션: 글래스 카드 뒤에 깊이감을 줌 */
+  background-image:
+    radial-gradient(60% 45% at 15% 10%, var(--glow-b), transparent 70%),
+    radial-gradient(55% 45% at 90% 85%, var(--glow-a), transparent 70%),
+    linear-gradient(165deg, var(--bg-from) 0%, var(--bg-to) 100%);
+  background-attachment: fixed;
+  font-family: var(--font-sans);
+  word-break: keep-all;
 }
